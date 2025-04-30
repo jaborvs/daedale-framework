@@ -1,0 +1,358 @@
+=============
+CONFIGURATION
+=============
+
+chunk_size = 5x16
+objects_permanent = # and E
+
+========
+PATTERNS
+========
+
+(------------------------------------------------------------------------------)
+(--- Enter/Exit Patterns ------------------------------------------------------)
+(------------------------------------------------------------------------------)
+
+Enter_Right
+.
+.
+
+Enter_Left
+.
+.
+
+Enter_Up
+.
+
+Enter_Down
+.
+
+Idle_Right
+PH1
+#
+
+Idle_Left
+PH1
+#
+
+Idle_Up
+PH1
+
+Idle_Down
+PH1
+
+Exit_Right
+.
+#
+
+Exit_Left
+.
+#
+
+Exit_Up
+.
+
+Exit_Down
+.
+
+(------------------------------------------------------------------------------)
+(--- Crawl Patterns -----------------------------------------------------------)
+(------------------------------------------------------------------------------)
+Crawl_Right_Start
+PH1 . 
+#   .
+
+Crawl_Right_End
+PBH PH1
+#   #
+
+Crawl_Right_PreSolidClimb_Start
+PH1 .   .
+#   .   .
+
+Crawl_Right_PreSolidClimb_End
+PBH PH1 .
+#   #   #
+
+Crawl_Right_PosSolidClimb_Low_Start
+PH2 .
+PBV #
+
+Crawl_Right_PosSolidClimb_Mid_Start
+PH3 .
+PBV #
+
+Crawl_Right_PosSolidClimb_High_Start
+PH4 .
+PBV #
+
+Crawl_Right_PosFloatClimb_Low_Start
+PH2 .
+PBV .
+
+Crawl_Right_PosFloatClimb_Mid_Start
+PH3 .
+PBV .
+
+Crawl_Right_PosFloatClimb_High_Start
+PH4 .
+PBV .
+
+Crawl_Right_PosClimb_End
+PBH PH1
+PBV #
+
+Crawl_Right_PreFall_Start
+PH1 .
+#   .
+
+Crawl_Right_PreFall_End
+PBH PH1
+#   .
+
+Crawl_Left_Start
+.   PH1
+.   #  
+
+Crawl_Left_End
+PH1 PBH
+#   #
+
+Crawl_Left_PreSolidClimb_Start
+.   .   PH1
+.   .   #
+
+Crawl_Left_PreSolidClimb_End
+.   PH1 PBH
+#   #   #
+
+Crawl_Left_PosSolidClimb_Low_Start
+.   PH2
+#   PBV
+
+Crawl_Left_PosSolidClimb_Mid_Start
+.   PH3
+#   PBV
+
+Crawl_Left_PosSolidClimb_High_Start
+.   PH4
+#   PBV
+
+Crawl_Left_PosFloatClimb_Low_Start
+.   PH2
+.   PBV
+
+Crawl_Left_PosFloatClimb_Mid_Start
+.   PH3
+.   PBV
+
+Crawl_Left_PosFloatClimb_High_Start
+.   PH4
+.   PBV
+
+Crawl_Left_PosClimb_End
+PH1 PBH
+#   PBV
+
+Crawl_Left_PreFall_Start
+.   PH1
+.   #  
+
+Crawl_Left_PreFall_End
+PH1 PBH
+.   #
+
+(------------------------------------------------------------------------------)
+(--- Climbing Solid Patterns --------------------------------------------------)
+(------------------------------------------------------------------------------)
+Solid_Right_Climb_Low_Start
+.   .
+PH1 .
+
+Solid_Right_Climb_Low_End
+PH2 .
+PBV #
+
+Solid_Right_Climb_Mid_Start
+.   .
+PH2 .
+
+Solid_Right_Climb_Mid_End
+PH3 .
+PBV #
+
+Solid_Right_Climb_High_Start
+.   .
+PH3 .
+
+Solid_Right_Climb_High_End
+PH4 .
+PBV #
+
+Solid_Right_Climb_Coil_Start
+.   .   .
+.   .   .
+PBH PH1 .
+
+Climb_Solid_Right_Coil_End
+PBH PH1 . 
+PBV PBH #
+PBH PBV #
+
+(------------------------------------------------------------------------------)
+(--- Climbing FLoating Patterns -----------------------------------------------)
+(------------------------------------------------------------------------------)
+Float_Climb_Low_Start
+.
+PH1
+
+Float_Climb_Low_End
+PH2
+PBV
+
+Float_Climb_Mid_Start
+.
+PH2
+
+Float_Climb_Mid_End
+PH3
+PBV
+
+Float_Climb_High_Start
+.
+PH3
+
+Float_Climb_High_End
+PH4
+PBV
+
+Float_Climb_Coil_Start
+.   .
+.   .
+PBH PH1
+
+Float_Climb_Coil_End
+PBH PH1
+PBV PBH
+PBH PBV
+
+(------------------------------------------------------------------------------)
+(--- Falling Solid Patterns ---------------------------------------------------)
+(------------------------------------------------------------------------------)
+Solid_Right_Fall_Start
+#   PH1
+.   .
+
+Solid_Right_Fall_End
+#   PBV
+#   PH1
+
+Solid_Right_Fall_PosCrawl_End
+PBH PBV
+#   PH1
+
+Solid_Right_Fall_PreCrawl_Start
+#   PH1
+.   .
+.   .
+
+Solid_Right_Fall_PreCrawl_End
+#   PBV
+#   PH1
+#   #
+
+(------------------------------------------------------------------------------)
+(--- Falling Floating Patterns ------------------------------------------------)
+(------------------------------------------------------------------------------)
+
+Float_Fall_Start
+PH1
+.
+
+Float_Fall_End
+PBV
+PH1
+
+Float_Fall_PreCrawl_Start
+PH1
+.
+.
+
+Float_Fall_PreCrawl_End
+PBV
+PH1
+#
+
+(------------------------------------------------------------------------------)
+(--- Get Stuck Patterns -------------------------------------------------------)
+(------------------------------------------------------------------------------)
+
+Eat_Start
+PH1
+
+Eat_End
+E
+
+(------------------------------------------------------------------------------)
+(--- Get Stuck Patterns -------------------------------------------------------)
+(------------------------------------------------------------------------------)
+
+Stuck_PosFall_Start
+.   PH1 .
+.   .   .
+
+Stuck_PosFall_End
+#   PH1 #
+#   #   #
+
+=======
+MODULES
+=======
+
+ModuleSolid
+[Crawl_Right_Start]               -> [Crawl_Right_End]          (-- verb Crawl(default,       right, 1) )
+[Crawl_Right_PreSolidClimb_Start]      -> [Crawl_Right_PreSolidClimb_End] (-- verb Crawl(preclimb,      right, 1, <none       , Climb(_)>) )
+[Crawl_Right_PosSolidClimb_Low_Start]  -> [Crawl_Right_PosClimb_End] (-- verb Crawl(posclimb_low,  right, 1, <Climb(low) , none    >) )
+[Crawl_Right_PosSolidClimb_Mid_Start]  -> [Crawl_Right_PosClimb_End] (-- verb Crawl(posclimb_mid,  right, 1, <Climb(mid) , none    >) )
+[Crawl_Right_PosSolidClimb_High_Start] -> [Crawl_Right_PosClimb_End] (-- verb Crawl(posclimb_high, right, 1, <Climb(high), none    >) )
+[Crawl_Right_PreFall_Start]       -> [Crawl_Right_PreFall_End]  (-- verb Crawl(prefall,       right, 1, <none       , Fall(_) >) )
+[Solid_Right_Climb_Low_Start]     -> [Solid_Right_Climb_Low_End]  (-- verb Climb(low,  up, 1, <none      , Climb(mid) >) )
+[Solid_Right_Climb_Mid_Start]     -> [Solid_Right_Climb_Mid_End]  (-- verb Climb(mid,  up, 1, <Climb(low), Climb(high)>) )
+[Solid_Right_Climb_High_Start]    -> [Solid_Right_Climb_High_End] (-- verb Climb(high, up, 1, <Climb(mid), none       >) )
+[Solid_Right_Climb_Coil_Start]    -> [Climb_Solid_Right_Coil_End] (-- verb Climb(coil, up, 2) )
+[Solid_Right_Fall_Start]           -> [Solid_Right_Fall_End]          (-- verb Fall (default,  down,  1) )
+[Crawl_Right_PreFall_End]          -> [Solid_Right_Fall_PosCrawl_End] (-- verb Fall (poscrawl, down,  1, <Crawl(prefall), none          >) )
+[Solid_Right_Fall_PreCrawl_Start]  -> [Solid_Right_Fall_PreCrawl_End] (-- verb Fall (precrawl, down,  1, <none          , Crawl(_)>) )
+[Eat_Start] -> [Eat_End]  (-- verb Eat  (poscrawl,  end, 0, <Crawl(_), none>) )
+
+ModuleFloat
+[Crawl_Right_Start]                    -> [Crawl_Right_End]          (-- verb Crawl(default,       right, 1) )
+[Crawl_Right_PosFloatClimb_Low_Start]  -> [Crawl_Right_PosClimb_End] (-- verb Crawl(posclimb_low,  right, 1, <Climb(low) , none    >) )
+[Crawl_Right_PosFloatClimb_Mid_Start]  -> [Crawl_Right_PosClimb_End] (-- verb Crawl(posclimb_mid,  right, 1, <Climb(mid) , none    >) )
+[Crawl_Right_PosFloatClimb_High_Start] -> [Crawl_Right_PosClimb_End] (-- verb Crawl(posclimb_high, right, 1, <Climb(high), none    >) )
+[Crawl_Right_PreFall_Start]            -> [Crawl_Right_PreFall_End]  (-- verb Crawl(prefall,       right, 1, <none       , Fall(_) >) )
+[Crawl_Left_Start]                     -> [Crawl_Left_End]           (-- verb Crawl(default,       left, 1) )
+[Crawl_Left_PosFloatClimb_Low_Start]   -> [Crawl_Left_PosClimb_End]  (-- verb Crawl(posclimb_low,  left, 1, <Climb(low) , none    >) )
+[Crawl_Left_PosFloatClimb_Mid_Start]   -> [Crawl_Left_PosClimb_End]  (-- verb Crawl(posclimb_mid,  left, 1, <Climb(mid) , none    >) )
+[Crawl_Left_PosFloatClimb_High_Start]  -> [Crawl_Left_PosClimb_End]  (-- verb Crawl(posclimb_high, left, 1, <Climb(high), none    >) )
+[Crawl_Left_PreFall_Start]             -> [Crawl_Left_PreFall_End]   (-- verb Crawl(prefall,       left, 1, <none       , Fall(_) >) )
+[Float_Climb_Low_Start]  -> [Float_Climb_Low_End]  (-- verb Climb(low,  up, 1, <none      , Climb(mid) >) )
+[Float_Climb_Mid_Start]  -> [Float_Climb_Mid_End]  (-- verb Climb(mid,  up, 1, <Climb(low), Climb(high)>) )
+[Float_Climb_High_Start] -> [Float_Climb_High_End] (-- verb Climb(high, up, 1, <Climb(mid), none       >) )
+[Float_Climb_Coil_Start] -> [Float_Climb_Coil_End] (-- verb Climb(coil, up, 2) )
+[Float_Fall_Start]          -> [Float_Fall_End]          (-- verb Fall (default,  down,  1) )
+[Float_Fall_PreCrawl_Start] -> [Float_Fall_PreCrawl_End] (-- verb Fall (precrawl, down,  1, <none, Crawl(_)>) )
+[Eat_Start] -> [Eat_End] (-- verb Eat  (poscrawl, end, 0, <Crawl(_), none>) )
+[Stuck_PosFall_Start]  -> [Stuck_PosFall_End]  (-- verb Stuck(posfall,  end, 0, <Fall(_) , none>) )
+
+============
+LEVEL DRAFTS
+============
+
+Level3
+M:[Crawl(_, left)+]  A:[Crawl(_,  right), Fall, Fall, Stuck]             (-- chunk Chunk1(ModuleFloat, win, <none  , none >) )
+M:[Crawl(_, left)+, Fall, Crawl(_, left)*, Fall+]                        (-- chunk Chunk2(ModuleFloat, win, <Chunk1, none >) )
+M:[Fall+, Crawl(_, right)+, Fall+, Crawl(_, right)+]                     (-- chunk Chunk3(ModuleFloat, win, <Chunk2, none >) )
+M:[Crawl(_, right)+, Fall*, Crawl(_, right)+, Climb*, Crawl(_, right)+]  (-- chunk Chunk4(ModuleFloat, win, <Chunk3, none >) )
+M:[Crawl(_, right)+, Climb(coil), Climb+, Crawl(_, right)*, Climb+]                   (-- chunk Chunk5(ModuleFloat, win, <Chunk4, none >) )
+M:[Climb+, Crawl(_, left)+, Eat]                (-- chunk Chunk6(ModuleFloat, win, <Chunk5, none >) )

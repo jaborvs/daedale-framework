@@ -1,0 +1,191 @@
+@font-face {
+    font-family: 'Silkscreen';
+    src: url('../fonts/slkscre.ttf') format('truetype');
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: white;
+    font-family: 'Courier New', Courier, monospace
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Silkscreen', monospace; /* Usar la fuente personalizada en los títulos */
+    padding: 0;
+    margin: 0;
+    color: #fff; /* Texto blanco para resaltar */
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+.left, .right {
+    flex: 1; /* Cada div ocupará un 50% del ancho */
+}
+
+.left {
+    display: flex;
+    flex-direction: column; /* Divide la sección izquierda en una columna */
+    background-color: #f0f0f0;
+}
+
+.top-left, .bottom-left {
+    flex: 1; /* Cada div ocupará un 50% del alto de la sección izquierda */
+    width: 100%; /* Cada div ocupará el 100% del ancho del contenedor padre */
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    display: flex;
+    flex-direction: column; /* Divide la sección derecha en una columna */
+}
+
+.top-right {
+    flex: 3; /* Ocupa 1 parte de 3 */
+    width: 100%; /* Ocupa todo el ancho del contenedor padre */
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    background-color: #000000;
+}
+
+.top-right-left {
+    flex: 1;
+    display: flex;
+    height: 100%; /* La altura se ajusta al 100% del contenedor */
+    justify-content: center; /* Esto centra el contenido horizontalmente dentro del elemento izquierdo */
+    align-items: center; /* Esto centra el contenido verticalmente dentro del elemento izquierdo */
+}
+
+.top-right-right {
+    width: auto;
+}
+
+.bottom-right {
+    flex: 4; /* Ocupa 2 partes de 3 */
+    width: 100%; /* Ocupa todo el ancho del contenedor padre */
+    display: flex;
+    flex-direction: column;
+    background-color: #282c24;
+    overflow-y: auto;
+}
+
+.puzzlescript-game {
+    height: 100%; /* La altura se ajusta al 100% del contenedor */
+    object-fit: cover; /* La imagen se recorta para llenar el contenedor sin distorsionarse */
+    image-rendering: pixelated
+}
+
+.pad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-right: 5vw;
+}
+
+.middle-buttons {
+    display: flex;
+}
+
+.button {
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+}
+  
+.button:hover, .button:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+}
+  
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button:active {
+    background-color: #333;
+}
+
+.button-pad {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.code {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.console {
+    font-size: x-small;
+    padding-inline: 8px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Ajuste el relleno según sea necesario */
+    background-color: #1a1c16; /* Un tono de gris oscuro para el fondo */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-top: 1px solid #ddd; /* Borde gris claro arriba */
+    border-bottom: 1px solid #ddd; /* Borde gris claro abajo */
+}
+  
+.header button {
+    margin-left: auto;
+}
+
+/* Estilos para la barra de desplazamiento en WebKit (Safari y Chrome) */
+::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+    height: 10px;
+    background-color: #22222200; /* Fondo de la barra de desplazamiento */
+}
+
+/* Estilos para la barra de desplazamiento en WebKit (Safari y Chrome) */
+::-webkit-scrollbar-thumb {
+    background-color: #444; /* Color del "thumb" (la parte móvil de la barra) */
+}
+
+/* Estilos para la barra de desplazamiento en Mozilla (Firefox) */
+/* NOTA: Los estilos de la barra de desplazamiento en Firefox son más limitados */
+/* y es posible que no puedas cambiar el color del fondo */
+/* solo el color del thumb */
+::-moz-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilos para el thumb de la barra de desplazamiento en Firefox */
+::-moz-scrollbar-thumb {
+    background-color: #444; /* Color del "thumb" (la parte móvil de la barra) */
+}

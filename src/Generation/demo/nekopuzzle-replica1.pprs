@@ -1,0 +1,136 @@
+=============
+CONFIGURATION
+=============
+
+chunk_size = 17x17
+objects_permanent = F
+
+========
+PATTERNS
+========
+
+(----------------------------------------------------------------------------)
+(--- Entry/Exit Patterns ----------------------------------------------------)
+(----------------------------------------------------------------------------)
+
+Enter_Right
+.
+
+Enter_Up
+.
+
+Enter_Down
+.
+
+Idle_Right
+P
+
+Idle_Left
+P
+
+Idle_Up
+P
+
+Idle_Down
+P
+
+Exit_Right
+.
+
+Exit_Left
+.
+
+Exit_Up
+.
+
+Exit_Down
+.
+
+(----------------------------------------------------------------------------)
+(--- Eat Patterns -----------------------------------------------------------)
+(----------------------------------------------------------------------------)
+
+Eat_First_Right_Start
+P   .
+
+Eat_First_Right_End
+F   P
+
+Eat_Default_Right_Start
+P   .
+
+Eat_Default_Right_End
+.   P
+
+Eat_First_Left_Start
+.   P
+
+Eat_First_Left_End
+P   F
+
+Eat_Default_Left_Start
+.   P
+
+Eat_Default_Left_End
+P   .
+
+Eat_First_Down_Start
+P
+.
+
+Eat_First_Down_End
+F
+P
+
+Eat_Default_Down_Start
+P
+.
+
+Eat_Default_Down_End
+.
+P
+
+Eat_First_Up_Start
+.
+P
+
+Eat_First_Up_End
+P
+F
+
+Eat_Default_Up_Start
+.
+P
+
+Eat_Default_Up_End
+P
+.
+
+Eat_End_Start
+P
+
+Eat_End_End
+F
+
+=======
+MODULES
+=======
+
+Module1
+[Eat_First_Right_Start]   -> [Eat_First_Right_End]      (-- verb Eat(first,   right, 1, <none, Eat(default, right)>) )
+[Eat_Default_Right_Start] -> [Eat_Default_Right_End]    (-- verb Eat(default, right, 1) )
+[Eat_First_Left_Start]    -> [Eat_First_Left_End]       (-- verb Eat(first,   left,  1, <none , Eat(default, left) >) )
+[Eat_Default_Left_Start]  -> [Eat_Default_Left_End]     (-- verb Eat(default, left,  1) )
+[Eat_First_Down_Start]    -> [Eat_First_Down_End]       (-- verb Eat(first,   down,  1, <none, Eat(default, down) >) )
+[Eat_Default_Down_Start]  -> [Eat_Default_Down_End]     (-- verb Eat(default, down,  1) )
+[Eat_First_Up_Start]      -> [Eat_First_Up_End]         (-- verb Eat(first,   up,    1, <none, Eat(default, up)   >) )
+[Eat_Default_Up_Start]    -> [Eat_Default_Up_End]       (-- verb Eat(default, up,    1) )
+[Eat_End_Start]           -> [Eat_End_End]              (-- verb Eat(default, end,   0, <Eat ,  none              >) )
+
+============
+LEVEL DRAFTS
+============
+
+Replica1
+M:[Eat(default, up)+, Eat(first, right), Eat(default, right)+, Eat(first, down), Eat(first, left), Eat(first, up), Eat(default, up)+]  (-- chunk Chunk1(Module1, win, <none  , none>) )
+M:[Eat(defualt, end)                                                                                                                ]  (-- chunk Chunk2(Module2, win, <Chunk1, none>))

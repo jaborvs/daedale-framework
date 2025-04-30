@@ -1,0 +1,8 @@
+### Ignore bin files
+bin
+
+### Ignore target build output directory
+target/
+
+### Ignore tmp files
+*.tmp

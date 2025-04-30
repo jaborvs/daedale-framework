@@ -1,0 +1,201 @@
+=============
+CONFIGURATION
+=============
+
+chunk_size = 3x3
+objects_permanent = ~ and E
+
+========
+PATTERNS
+========
+
+Enter_Right
+.
+
+Enter_Left
+.
+
+Enter_Up
+.
+
+Enter_Down
+.
+
+Idle_Right
+P
+
+Idle_Left
+P
+
+Idle_Up
+P
+
+Idle_Down
+P
+
+Exit_Right
+~
+
+Exit_Left
+~
+
+Exit_Up
+~
+
+Exit_Down
+~
+
+Walk_Right_Start
+P   .
+
+Walk_Right_End
+~   P
+
+Walk_Left_Start
+.   P
+
+
+Walk_Left_End
+P   ~
+
+Walk_Up_Start
+.
+P
+
+Walk_Up_End
+P
+~
+
+Walk_Down_Start
+P
+.
+
+Walk_Down_End
+~
+P
+
+Walk_Exit_Start
+P
+
+Walk_Exit_End
+E
+
+Walk_Stuck_Start
+P
+
+Walk_Stuck_End
+~
+
+=======
+MODULES
+=======
+
+Module1
+[Walk_Right_Start] -> [Walk_Right_End]  (-- verb Walk(default, right, 1                  ) )
+[Walk_Left_Start]  -> [Walk_Left_End]   (-- verb Walk(default, left,  1                  ) )
+[Walk_Up_Start]    -> [Walk_Up_End]     (-- verb Walk(default, up,    1                  ) )
+[Walk_Down_Start]  -> [Walk_Down_End]   (-- verb Walk(default, down,  1                  ) )
+[Walk_Exit_Start]  -> [Walk_Exit_End]   (-- verb Walk(exit,    end,   0, <Walk(_), none> ) )
+[Walk_Stuck_Start] -> [Walk_Stuck_End]  (-- verb Walk(stuck,   end,   0, <Walk(_), none> ) )
+
+============
+LEVEL DRAFTS
+============
+
+MediumMaze
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk1  (Module1, win, <none   , Chunk1 >) )
+M: [Walk(_, right) +, Walk(_, down)  +]                                           (-- chunk Chunk2  (Module1, win, <Chunk1 , Chunk2 >) )
+M: [Walk(_, down)  +, Walk(_, right) +]  A: [Walk(_, down)  +, Walk(_, left)  +]  (-- chunk Chunk3(Module1, win, <Chunk2, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +]                                             (-- chunk Chunk3.1(Module1, fail, <Chunk3    , none>) )
+M: [Walk(_, down)  +, Walk(_, right) +]                                             (-- chunk Chunk3.2(Module1, fail, <Chunk3.1, none>) )
+M: [Walk(_, right) +, Walk(stuck)     ]                                             (-- chunk Chunk3.3(Module1, fail, <Chunk3.2, none>) )
+M: [Walk(_, right) +, Walk(_, up)    +]  A: [Walk(_, right) +, Walk(_, down)  +]  (-- chunk Chunk4(Module1, win, <Chunk3, none>) )
+M: [Walk(_, down)  +, Walk(stuck)     ]                                             (-- chunk Chunk4.1(Module1, fail, <Chunk4, none>) )
+M: [Walk(_, up)    +, Walk(_, right) +]                                           (-- chunk Chunk5(Module1, win, <Chunk4, none>) )
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk6(Module1, win, <Chunk5, none>) )
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk7(Module1, win, <Chunk6, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +]  A: [Walk(_, right) +, Walk(_, right) +]  (-- chunk Chunk8(Module1, win, <Chunk7, none>) )
+M: [Walk(_, right) +                  ]                                             (-- chunk Chunk8.1(Module1, fail, <Chunk8, none>) )
+M: [Walk(_, right) +                  ]                                             (-- chunk Chunk8.2(Module1, fail, <Chunk8.1, none>) )
+M: [Walk(_, right) +                  ]                                             (-- chunk Chunk8.3(Module1, fail, <Chunk8.2, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +]                                             (-- chunk Chunk8.4(Module1, fail, <Chunk8.3, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +]                                             (-- chunk Chunk8.5(Module1, fail, <Chunk8.4, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +]                                             (-- chunk Chunk8.6(Module1, fail, <Chunk8.5, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +]                                             (-- chunk Chunk8.7(Module1, fail, <Chunk8.6, none>) )
+M: [Walk(_, right) +, Walk(stuck)    +]                                             (-- chunk Chunk8.8(Module1, fail, <Chunk8.7, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +]  A: [Walk(_, down)  +, Walk(_, right) +]  (-- chunk Chunk9(Module1, win, <Chunk8, none>) )
+M: [Walk(_, right) +, Walk(_, right) +]                                             (-- chunk Chunk9.1(Module1, fail, <Chunk9, none>) )
+M: [Walk(_, left)  +                  ]                                           (-- chunk Chunk10(Module1, win, <Chunk9, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +]                                           (-- chunk Chunk11(Module1, win, <Chunk10, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +]                                           (-- chunk Chunk12(Module1, win, <Chunk11, none>) )
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk13(Module1, win, <Chunk12, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +]  A: [Walk(_, right) +, Walk(_, right) +]  (-- chunk Chunk14(Module1, win, <Chunk13, none>) )
+M: [Walk(_, right) +                  ]                                             (-- chunk Chunk14.1(Module1, fail, <Chunk14  , none>) )
+M: [Walk(_, right) +, Walk(_, up)    +]                                             (-- chunk Chunk14.2(Module1, fail, <Chunk14.1, none>) )
+M: [Walk(_, up)    +, Walk(stuck)     ]                                             (-- chunk Chunk14.3(Module1, fail, <Chunk14.2, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +]                                           (-- chunk Chunk15(Module1, win, <Chunk14, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +]                                           (-- chunk Chunk16(Module1, win, <Chunk15, none>) )
+M: [Walk(_, down)  +                  ]                                           (-- chunk Chunk17(Module1, win, <Chunk16, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +]  A: [Walk(_, down)  +, Walk(_, down)  +]  (-- chunk Chunk18(Module1, win, <Chunk17, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +]                                             (-- chunk Chunk18.1(Module1, fail, <Chunk18  , none>) )
+M: [Walk(_, left)  +, Walk(stuck)     ]                                             (-- chunk Chunk18.2(Module1, fail, <Chunk18.1, none>) )
+M: [Walk(_, left)  +, Walk(_, up)    +]                                           (-- chunk Chunk19(Module1, win, <Chunk18, none>) )
+M: [Walk(_, up)    +                  ]                                           (-- chunk Chunk20(Module1, win, <Chunk19, none>) )
+M: [Walk(_, up)    +, Walk(_, left)  +]                                           (-- chunk Chunk21(Module1, win, <Chunk20, none>) )
+M: [Walk(_, left)  +                  ]                                           (-- chunk Chunk22(Module1, win, <Chunk21, none>) )
+M: [Walk(_, left)  +                  ]                                           (-- chunk Chunk23(Module1, win, <Chunk22, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +]                                           (-- chunk Chunk24(Module1, win, <Chunk23, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +]                                           (-- chunk Chunk25(Module1, win, <Chunk24, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +]  A: [Walk(_, right) +, Walk(_, right) +]  (-- chunk Chunk26(Module1, win, <Chunk25, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +]                                             (-- chunk Chunk26.1(Module1, fail, <Chunk26  , none>) )
+M: [Walk(_, down)  +, Walk(stuck)     ]                                             (-- chunk Chunk26.2(Module1, fail, <Chunk26.1, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +]                                           (-- chunk Chunk27(Module1, win, <Chunk26, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +]                                           (-- chunk Chunk28(Module1, win, <Chunk27, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +]  A: [Walk(_, down)  +, Walk(_, down)  +]  (-- chunk Chunk29(Module1, win, <Chunk28, none>) )
+M: [Walk(_, down)  +, Walk(_, down)  +]                                             (-- chunk Chunk29.1(Module1, fail, <Chunk29, none>) )
+M: [Walk(_, down)  +, Walk(stuck)     ]                                             (-- chunk Chunk29.2(Module1, fail, <Chunk29.1, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +]                                           (-- chunk Chunk30(Module1, win, <Chunk29, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +]                                           (-- chunk Chunk31(Module1, win, <Chunk30, none>) )
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk32(Module1, win, <Chunk31, none>) )
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk33(Module1, win, <Chunk32, none>) )
+M: [Walk(_, right) +                  ]                                           (-- chunk Chunk34(Module1, win, <Chunk33, none>) )
+M: [Walk(_, right) +, Walk(_, right) +]  A: [Walk(_, right) +, Walk(_, down)  +]  (-- chunk Chunk35(Module1, win, <Chunk34, none>) )
+M: [Walk(_, down)  +, Walk(stuck)     ]                                             (-- chunk Chunk34.1(Module1, fail, <Chunk35, none>) )
+M: [Walk(_, up)    +, Walk(_, up)    +] (-- chunk Chunk36(Module1, win, <Chunk35, none>) )
+M: [Walk(_, up)    +, Walk(_, right) +] (-- chunk Chunk37(Module1, win, <Chunk36, none>) )
+M: [Walk(_, right) +, Walk(_, up)    +] (-- chunk Chunk38(Module1, win, <Chunk37, none>) )
+M: [Walk(_, up)    +, Walk(_, left)  +] (-- chunk Chunk39(Module1, win, <Chunk38, none>) )
+M: [Walk(_, left)  +, Walk(_, up)    +] (-- chunk Chunk40(Module1, win, <Chunk39, none>) )
+M: [Walk(_, up)    +, Walk(_, right) +] (-- chunk Chunk41(Module1, win, <Chunk40, none>) )
+M: [Walk(_, right) +, Walk(_, up)    +] (-- chunk Chunk42(Module1, win, <Chunk41, none>) )
+M: [Walk(_, up)    +, Walk(_, right) +] (-- chunk Chunk43(Module1, win, <Chunk42, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +] (-- chunk Chunk44(Module1, win, <Chunk43, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +] (-- chunk Chunk45(Module1, win, <Chunk44, none>) )
+M: [Walk(_, right) +, Walk(_, right) +] (-- chunk Chunk46(Module1, win, <Chunk45, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +] (-- chunk Chunk47(Module1, win, <Chunk46, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +] (-- chunk Chunk48(Module1, win, <Chunk47, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +] (-- chunk Chunk49(Module1, win, <Chunk48, none>) )
+M: [Walk(_, down)  +, Walk(_, right) +] (-- chunk Chunk50(Module1, win, <Chunk49, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +] (-- chunk Chunk51(Module1, win, <Chunk50, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +] (-- chunk Chunk52(Module1, win, <Chunk51, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +] (-- chunk Chunk53(Module1, win, <Chunk52, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +] A: [Walk(_, down)+, Walk(_, right)+] (-- chunk Chunk54(Module1, win, <Chunk53, none>) )
+M: [Walk(_, right) +, Walk(_, down)  +] (-- chunk Chunk54.1(Module1, fail, <Chunk54    , none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +] (-- chunk Chunk54.2(Module1, fail, <Chunk54.1, none>) )
+M: [Walk(_, left)  +, Walk(stuck)     ] (-- chunk Chunk54.3(Module1, fail, <Chunk54.2, none>) )
+M: [Walk(_, left)  +, Walk(_, up)    +] (-- chunk Chunk55(Module1, win, <Chunk54, none>) )
+M: [Walk(_, up)    +, Walk(_, left)  +] (-- chunk Chunk56(Module1, win, <Chunk55, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +] (-- chunk Chunk57(Module1, win, <Chunk56, none>) )
+M: [Walk(_, down)  +, Walk(_, down)  +] (-- chunk Chunk58(Module1, win, <Chunk57, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +] (-- chunk Chunk59(Module1, win, <Chunk58, none>) )
+M: [Walk(_, left)  +                  ] (-- chunk Chunk60(Module1, win, <Chunk59, none>) )
+M: [Walk(_, left)  +                  ] (-- chunk Chunk61(Module1, win, <Chunk60, none>) )
+M: [Walk(_, left)  +, Walk(_, up)    +] (-- chunk Chunk62(Module1, win, <Chunk61, none>) )
+M: [Walk(_, up)    +, Walk(_, left)  +] (-- chunk Chunk63(Module1, win, <Chunk62, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +] (-- chunk Chunk64(Module1, win, <Chunk63, none>) )
+M: [Walk(_, down)  +, Walk(_, left)  +] (-- chunk Chunk65(Module1, win, <Chunk64, none>) )
+M: [Walk(_, left)  +, Walk(_, up)    +] (-- chunk Chunk66(Module1, win, <Chunk65, none>) )
+M: [Walk(_, up)    +, Walk(_, left)  +] (-- chunk Chunk67(Module1, win, <Chunk66, none>) )
+M: [Walk(_, left)  +                  ] (-- chunk Chunk68(Module1, win, <Chunk67, none>) )
+M: [Walk(_, left)  +, Walk(_, down)  +] (-- chunk Chunk69(Module1, win, <Chunk68, none>) )
+M: [Walk(_, down)  +, Walk(exit)      ] (-- chunk Chunk70(Module1, win, <Chunk69, none>) )
