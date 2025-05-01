@@ -39,7 +39,7 @@ DÆDALE has been built using the following programming languages:
 [![Python][Python.org]][Python-url]
 
 ## License
-Distributed under the MIT License. See [`LICENSE.txt`](license-url) for more information.
+Distributed under the MIT License. See [`LICENSE.txt`][license-url] for more information.
 
 ## Acknowledgments
 DÆDALE was conceived and developed within the scope of my Master's thesis pursued within the 
