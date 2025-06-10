@@ -349,10 +349,23 @@ ModuleFloat
 LEVEL DRAFTS
 ============
 
+Level1
+M:[Crawl+]                                                                                 (-- chunk Chunk1(ModuleSolid, win, <none  , Chunk1 >) )
+M:[Crawl+, Climb(low), Climb(mid), Crawl+, Fall+, Crawl+]                                  (-- chunk Chunk2(ModuleSolid, win, <Chunk1, Chunk1 >) )
+M:[Crawl+, Climb(low), Climb(mid), Crawl+, Climb(low), Climb(mid), Crawl+, Fall+, Crawl+]  (-- chunk Chunk3(ModuleSolid, win, <Chunk2, Chunk1 >) )
+M:[Crawl+, Eat]                                                                            (-- chunk Chunk4(ModuleSolid, win, <Chunk3, Chunk1 >) )
+
+Level2
+M:[Crawl+, Fall+, Crawl+]                (-- chunk Chunk1(ModuleFloat, win, <none  , none >) )
+M:[Crawl+, Climb(coil), Climb+, Crawl+]  (-- chunk Chunk2(ModuleFloat, win, <Chunk1, Chunk1 >) )
+M:[Crawl+]                               (-- chunk Chunk3(ModuleFloat, win, <Chunk2, Chunk1 >) )
+M:[Crawl+, Climb(coil), Climb+, Crawl+]  (-- chunk Chunk4(ModuleFloat, win, <Chunk3, Chunk1 >) )
+M:[Crawl+, Eat]                          (-- chunk Chunk5(ModuleFloat, win, <Chunk4, Chunk1 >) )
+
 Level3
 M:[Crawl(_, left)+]  A:[Crawl(_,  right), Fall, Fall, Stuck]             (-- chunk Chunk1(ModuleFloat, win, <none  , none >) )
 M:[Crawl(_, left)+, Fall, Crawl(_, left)*, Fall+]                        (-- chunk Chunk2(ModuleFloat, win, <Chunk1, none >) )
 M:[Fall+, Crawl(_, right)+, Fall+, Crawl(_, right)+]                     (-- chunk Chunk3(ModuleFloat, win, <Chunk2, none >) )
 M:[Crawl(_, right)+, Fall*, Crawl(_, right)+, Climb*, Crawl(_, right)+]  (-- chunk Chunk4(ModuleFloat, win, <Chunk3, none >) )
-M:[Crawl(_, right)+, Climb(coil), Climb+, Crawl(_, right)*, Climb+]                   (-- chunk Chunk5(ModuleFloat, win, <Chunk4, none >) )
-M:[Climb+, Crawl(_, left)+, Eat]                (-- chunk Chunk6(ModuleFloat, win, <Chunk5, none >) )
+M:[Crawl(_, right)+, Climb+, Crawl(_, right)*, Climb+]                   (-- chunk Chunk5(ModuleFloat, win, <Chunk4, none >) )
+M:[Climb+, Crawl(_, left)+, Climb*, Crawl(_, left)+, Eat]                (-- chunk Chunk6(ModuleFloat, win, <Chunk5, none >) )
